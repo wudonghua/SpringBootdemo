@@ -96,6 +96,5 @@
         </root>
     </springProfile>
 
-    <!--log4jdbc -->
-    <logger name="dao" level="DEBUG"/>
+
 </configuration>
