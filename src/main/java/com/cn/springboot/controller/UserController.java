@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.stream.Stream;
 
-@RequestMapping("/ss")
+
+@RequestMapping("/demo")
 @RestController
 @EnableAutoConfiguration
 public class UserController {
@@ -36,4 +39,14 @@ public class UserController {
         String id = user.getId();
         logger.info("插入数据库的ID: {}", id);
     }
+
+    @RequestMapping("allUser")
+    List<User> findAllUser(){
+        List<User> allUser = userMapper.findAllUser();
+        Stream<User> stream = allUser.stream();
+        logger.info(stream.toString());
+        return allUser;
+
+    }
+
 }

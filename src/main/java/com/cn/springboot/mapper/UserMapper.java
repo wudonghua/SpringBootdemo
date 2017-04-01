@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 /**
  * Created by dw07 on 2017/3/29.
  */
@@ -15,4 +17,8 @@ public interface UserMapper {
 
 //    @Insert(" INSERT INTO  user (USER_NAME,USER_AGE,USER_GENDER) VALUE (#{userName},#{userAge},#{userGender})")
     int insertUser(@RequestBody User user);
+
+    @Select("SELECT * FROM user")
+    List<User> findAllUser();
+
 }
