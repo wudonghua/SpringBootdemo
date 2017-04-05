@@ -1,7 +1,7 @@
 package com.cn.springboot.controller;
 
-import com.cn.springboot.mapper.UserMapper;
 import com.cn.springboot.pojo.User;
+import com.cn.springboot.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,13 @@ import java.util.stream.Stream;
 public class UserController {
     private Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
+
+//    @PostConstruct
+//    private void init(){
+//        logger.info(userService.toString());
+//
+//    }
 
     @RequestMapping("/hello")
     String userIndex() {
@@ -30,21 +36,23 @@ public class UserController {
 
     @RequestMapping("/user")
     User findUser(@RequestParam String id) {
-        return userMapper.findUserById(id);
+        return userService.findUserById(id);
     }
 
     @RequestMapping("/insert")
     void insertUser(@RequestBody User user) {
-        userMapper.insertUser(user);
+        userService.insertUser(user);
         String id = user.getId();
         logger.info("插入数据库的ID: {}", id);
     }
 
     @RequestMapping("allUser")
     List<User> findAllUser(){
-        List<User> allUser = userMapper.findAllUser();
+        List<User> allUser = userService.findAllUser();
         Stream<User> stream = allUser.stream();
-        logger.info(stream.toString());
+        stream.forEach(
+                p->System.out.println(p)
+        );
         return allUser;
 
     }
