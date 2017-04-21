@@ -28,7 +28,7 @@ public class UserController {
     private UserService userService;
 
 //    @PostConstruct
-//    private void init(){
+//    private void basinit(){
 //        logger.info(userService.toString());
 //
 //    }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <excludeFromCompile>
-      <file url="file://$PROJECT_DIR$/src/main/java/com/cn/springboot/source/init/BInit.java" />
+      <file url="file://$PROJECT_DIR$/src/main/java/com/cn/springboot/source/basinit/BInit.java" />
     </excludeFromCompile>
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">

@@ -1,6 +1,6 @@
 package com.cn;
 
-import com.cn.springboot.source.init.BaseInit;
+import com.cn.springboot.source.basinit.basconfig.BaseInit;
 import org.jboss.logging.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

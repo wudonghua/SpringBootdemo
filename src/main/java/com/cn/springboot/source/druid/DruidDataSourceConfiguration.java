@@ -32,10 +32,10 @@ public class DruidDataSourceConfiguration {
     @Value("${spring.datasource.type}")
     private Class<? extends DataSource> dataSourceType;
 
-    @Bean(name = "dataSource", destroyMethod = "close", initMethod = "init")
+    @Bean(name = "dataSource", destroyMethod = "close", initMethod = "basinit")
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
-        logger.info("-------------------- writeDataSource init ---------------------");
+        logger.info("-------------------- writeDataSource basinit ---------------------");
         return DataSourceBuilder.create().type(dataSourceType).build();
     }
 
