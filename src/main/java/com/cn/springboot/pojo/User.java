@@ -1,14 +1,20 @@
 package com.cn.springboot.pojo;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import java.io.Serializable;
 
 /**
  * Created by dw07 on 2017/3/29.
  */
+@Service
 public class User implements Serializable {
     private static final long serialVersionUID = -7531102640304086150L;
     private String id;
+    @Value("${name}")
     private String userName;
+    @Value("${userAge}")
     private String userAge;
     private String userGender;
 
@@ -55,4 +61,35 @@ public class User implements Serializable {
                 ", userGender='" + userGender + '\'' +
                 '}';
     }
+
+    public static void  exceptionGetStackTrace(){
+        StackTraceElement[] stacknTrace = new Exception().getStackTrace();
+        for ( StackTraceElement s :stacknTrace) {
+//
+//
+//
+//            System.out.println(s.getClassName()+"\n"+s.getMethodName()+"\n"+s.getFileName());
+//            System.out.println("\n"+"\n");
+
+        }
+    } public static void  ThrowableGetStackTrace(){
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        for ( StackTraceElement s :stackTrace) {
+
+            String className = s.getClassName();
+            String name = BaseUser.class.getName();
+
+            System.out.print(className+"\t");
+            System.out.print(name);
+
+            boolean equals = className.equals(name);
+            System.out.println(equals);
+
+
+//            System.out.println(s.getClassName()+"\n"+s.getMethodName()+"\n"+s.getFileName());
+//            System.out.println("\n"+"\n");
+
+        }
+    }
+
 }
