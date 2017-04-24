@@ -1,8 +1,8 @@
 package com.cn.springboot.source.basinit;
 
-import com.cn.springboot.source.basinit.basconfig.AbsBaseInitConfig;
+import com.cn.springboot.source.basinit.basconfig.AbcBaseConfig;
 
-public class BInit extends AbsBaseInitConfig {
+public class BInit extends AbcBaseConfig {
 
     public BInit() {
         super();

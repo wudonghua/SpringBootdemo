@@ -1,9 +1,9 @@
 package com.cn.springboot.source.basinit;
 
 
-import com.cn.springboot.source.basinit.basconfig.AbsBaseInitConfig;
+import com.cn.springboot.source.basinit.basconfig.AbcBaseConfig;
 
-public class AInit extends AbsBaseInitConfig {
+public class AInit extends AbcBaseConfig {
 
     public AInit() {
         super();//先调用父类构造器
