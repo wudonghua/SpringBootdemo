@@ -1,12 +1,12 @@
 package com.cn.springboot.source.druid;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -29,14 +29,14 @@ import javax.sql.DataSource;
 @MapperScan("/com/cn/springboot/mapper")//扫描mybatis的mapper目录
 public class DruidDataSourceConfiguration {
     private Logger logger = LoggerFactory.getLogger(DruidDataSourceConfiguration.class);
-    @Value("${spring.datasource.type}")
-    private Class<? extends DataSource> dataSourceType;
+    private DruidDataSource dataSourceType = new DruidDataSource();
 
-    @Bean(name = "dataSource", destroyMethod = "close", initMethod = "basinit")
+
+    @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
         logger.info("-------------------- writeDataSource basinit ---------------------");
-        return DataSourceBuilder.create().type(dataSourceType).build();
+        return DataSourceBuilder.create().type(dataSourceType.getClass()).build();
     }
 
     @Bean
@@ -45,7 +45,7 @@ public class DruidDataSourceConfiguration {
         sqlSessionFactoryBean.setDataSource(dataSource());
         sqlSessionFactoryBean.setTypeAliasesPackage("com.cn.springboot");
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("config/mybatis/mapperSQL/*.xml"));
+        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("poolConfig/mybatis/mapperSQL/*.xml"));
         sqlSessionFactoryBean.getObject().getConfiguration().setMapUnderscoreToCamelCase(true);
         return sqlSessionFactoryBean.getObject();
     }

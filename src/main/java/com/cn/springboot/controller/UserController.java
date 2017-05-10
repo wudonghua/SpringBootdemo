@@ -3,6 +3,7 @@ package com.cn.springboot.controller;
 import com.alibaba.fastjson.JSON;
 import com.cn.springboot.pojo.User;
 import com.cn.springboot.service.UserService;
+import com.cn.springboot.service.impl.TsetPrime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,31 +53,39 @@ public class UserController {
     }
 
     @RequestMapping("allUser")
-    List<User> findAllUser(){
+    List<User> findAllUser() {
         List<User> allUser = userService.findAllUser();
         Stream<User> stream = allUser.stream();
         stream.forEach(
-                p->System.out.println(p)
+                p -> System.out.println(p)
         );
         return allUser;
 
     }
 
     @RequestMapping("get")
-    public ModelAndView get(){
+    public ModelAndView get() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login.jsp");
         return modelAndView;
     }
+
     @RequestMapping("map")
-    public String getMapToJson(){
-        Map<String,String> map = new HashMap<>();
-        map.put("errorCode","0000");
+    public String getMapToJson() {
+        Map<String, String> map = new HashMap<>();
+        map.put("errorCode", "0000");
         String jsonString = JSON.toJSONString(map);
         logger.info(jsonString);
         return jsonString;
 
     }
 
+    @RequestMapping("test")
+    public String testa(HttpServletRequest request) {
+        TsetPrime t = new TsetPrime();
+        byte[] prime = t.getPrime(request);
+//        t.printPrime(prime);
+        return null;
+    }
 
 }

@@ -1,8 +1,6 @@
 package com.cn.springboot.source.basinit;
 
 
-import com.cn.springboot.source.basinit.basconfig.AbcBaseConfig;
-
 public class AInit extends AbcBaseConfig {
 
     public AInit() {

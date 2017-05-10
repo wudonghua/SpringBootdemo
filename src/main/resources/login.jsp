@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <script src="config/jquery-1.11.3.min.js"></script>
+    <script src="poolConfig/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 正在跳转...

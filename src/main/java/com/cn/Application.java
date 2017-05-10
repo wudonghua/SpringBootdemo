@@ -1,6 +1,9 @@
 package com.cn;
 
-import com.cn.springboot.source.basinit.basconfig.BaseInit;
+import com.alibaba.fastjson.JSON;
+import com.cn.springboot.pojo.User;
+import com.cn.springboot.source.basinit.BaseInit;
+import com.cn.springboot.source.jedis.JedisConfig;
 import org.jboss.logging.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +12,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -25,47 +29,36 @@ public class Application {
         logger.info("SpringBoot启动: " + LocalDateTime.now());
         BaseInit.init();
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
-//        User.exceptionGetStackTrace();
-//        Throwable t = new Throwable();
-//        StackTraceElement[] stackTrace = t.getStackTrace();
-//        for ( StackTraceElement s:stackTrace) {
-//            String className = s.getClassName();
-//            String name = BaseUser.class.getName();
-//            if(className.equals(name)){
-//                System.out.println("+++++++++++");
-//            }
-//
-//
+        com.cn.springboot.pojo.User bean = new com.cn.springboot.pojo.User("123456", "x");
+        String user = JSON.toJSONString(bean);
+        JedisConfig.setValue("user", user);
+        JedisConfig.setValue("Riven","This is a Bast Paly");
+        String value = JedisConfig.getValue("Riven");
+        String user1 = JedisConfig.getValue("user");
+        User user2 = JSON.parseObject(user1, User.class);
+        System.out.println(value);
+        System.out.println(user2);
+//        RInputStream bean1 = new RInputStream();
+//        CebServiceImpl cebService = new CebServiceImpl(bean1);
+//        bean1.start();
+//        cebService.start();
+//        TsetPrime tsetPrime = new TsetPrime();
+//        byte[] prime = tsetPrime.getPrime();
+        LocalDate ldt = LocalDate.now();
+        logger.info(ldt);
+//        tsetPrime.printPrime(prime);
+//        tsetPrime.getRead();
+//        UnZipUtil.zip("D:/D.zip", new File("D:/test.txt"));
+//        UnZipUtil.unZip();
+//        String dl = LocalDate.now().toString();
+//        boolean b = UnZipUtil.deleteDirectory("D:/sssss/"+dl);
+//        if(b){
+//            System.out.println("删除成功");
+//        }else{
+//            System.out.println("删除失败");
 //        }
-//        User.ThrowableGetStackTrace();
-
-
-//        Map<String, Object> map = new HashMap<>();
-//        map.put("1", "value1");
-//        map.put("2", "value2");
-//        map.put("3", "value3");
-//        map.put("4", "value4");
-//        map.put("5", "value5");
-//        map.put("6", "value6");
-//        map.put("7", "value7");
-//        for (String key : map.keySet()) {
-//            boolean b = map.containsKey("8");
-//            logger.info(b);
-//        }
-//        String uuid = UUID.randomUUID().toString().trim()
-//
-//                .replaceAll("-", "17896");
-//        String substring = uuid.substring(0, 2);
-//        logger.info(uuid);
-//        logger.info(substring);
-//
-
-
-
-
-//        map.containsKey();
-//        logger.info(values);
 
 
     }
+
 }

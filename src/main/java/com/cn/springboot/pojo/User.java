@@ -18,7 +18,12 @@ public class User implements Serializable {
     private String userAge;
     private String userGender;
 
+    public User() {}
 
+    public User(String id, String userGender) {
+        this.id = id;
+        this.userGender = userGender;
+    }
 
     public String getId() {
         return id;
